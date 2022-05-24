@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Cars</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Header/logo Title */
+.header {
+  padding: 20px;
+  text-align: center;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+body {margin:0;font-family:Arial}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;    
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+h5{
+  font-style: italic;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+/* input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Style the container/contact section */
+/* .container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+} */
+
+/* Create two columns that float next to eachother */
+/* .column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+} */
+
+/* Clear floats after the columns */
+/* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  } 
+} */
+* {
+  box-sizing: border-box;
+}
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media screen and (max-width:600px) {
+  .ROW div{
+      display: block;
+      width: 100%;
+      margin: auto;
+      height: auto;
+  }
+  
+}
+</style>
+</head>
+<div class="header">
+	<h1>Cars</h1>
+	<p>Created by <span style="font-style: italic;">Mostafa Ayman</span> </p>
+	<!-- <p style="font-style: oblique;">Your concept to have comfort</p> -->
+</div>
+  <div style="position: sticky; top: 0;">
+  <div class="topnav" id="myTopnav">
+	<a href="index.html" >Home</a>
+	<a href="index2.html" >History</a>
+	<a href="new.html" class="active">News</a>
+	<a href="findyourcar.html">Find your car</a>
+	<div class="dropdown">
+    <button class="dropbtn">Luxury 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="https://www.audi.com/en.html" target="_blank">Audi</a>
+      <a href="https://www.bmw.com/en/index.html" target="_blank">BMW</a>
+      <a href="https://www.mercedes-benz.com/en/" target="_blank">Mercedes</a>
+      <a href="https://www.rolls-roycemotorcars.com/en_GB/home.html" target="_blank">Rolls-Royce</a>
+    </div>
+  </div> 
+	<a href="SignUp.html">Sign up</a>
+	<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+</div>
+    <!-- NEW -->
+    <h2 style="text-align:center">Trending</h2>
+
+    <div class="row ROW">
+      <div class="column">
+        <img src="fastest.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+      </div>
+      <div class="column">
+        <img src="merchyb2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+      </div>
+      <div class="column">
+        <img src="bestvalue.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+      </div>
+      <div class="column">
+        <img src="bestluxury.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+      </div>
+    </div>
+    
+    <div id="myModal" class="modal">
+      <span class="close cursor" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+    
+        <div class="mySlides">
+          <div class="numbertext">Buggati</div>
+          <img src="fastest.jpg" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+          <div class="numbertext">Mercedes C300 e</div>
+          <img src="merchyb2.jpg" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+          <div class="numbertext">Hyundai Venue</div>
+          <img src="bestvalue.jpg" style="width:100%">
+        </div>
+        
+        <div class="mySlides">
+          <div class="numbertext">Cadillac</div>
+          <img src="bestluxury.jpg" style="width:100%">
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+    
+    
+        <div class="column">
+          <img class="demo cursor" src="fastest.jpg" style="width:100%" onclick="currentSlide(1)" alt="The fastest car of 2022">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="merchyb2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Best electric vehicle of 2022">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="bestvalue.jpg" style="width:100%" onclick="currentSlide(3)" alt="Best value car of 2022">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="bestluxury.jpg" style="width:100%" onclick="currentSlide(4)" alt="Best luxury car of 2022">
+        </div>
+      </div>
+    </div>
+    <br><br><br><br><br>
+    <!-- NEW2 -->
+    <h2 style="text-align:center">Latest new car</h2>
+
+    <div class="row ROW">
+      <div class="column">
+        <img src="nissanz.jpg" style="width:100%"  class="hover-shadow cursor" title="2023 Nissan Z">
+      </div>
+      <div class="column">
+        <img src="chevo.jpg" style="width:100%"  class="hover-shadow cursor" title="2022 Chevrolet Bolt EUV">
+      </div>
+      <div class="column">
+        <img src="altima.jpg" style="width:100%"  class="hover-shadow cursor" title="2022 Nissan Altima">
+      </div>
+      <div class="column">
+        <img src="bestyear.jpg" style="width:100%"  class="hover-shadow cursor" title="2022 Ford F-150 Lighting"> 
+      </div>
+    </div>
+    <br><br><br><br><br>
+    <!-- NEW3 -->
+    <h2 style="text-align:center">2022 Fastest cars</h2>
+
+    <div class="row ROW">
+      <div class="column">
+        <img src="fastest.jpg" style="width:100%"  class="hover-shadow cursor" title="Bugatti Chiron Super Sport 300+ – 490 km/h">
+      </div>
+      <div class="column">
+        <img src="fastest2.jpg" style="width:100%"  class="hover-shadow cursor" title="Hennessey Venom F5 – 485 km/h">
+      </div>
+      <div class="column">
+        <img src="fastest3.jpg" style="width:100%"  class="hover-shadow cursor" title="SSC Tuatara – 483 km/h">
+      </div>
+      <div class="column">
+        <img src="fastest4.jpg" style="width:100%"  class="hover-shadow cursor" title="Koenigsegg Jesko – 483 km/h"> 
+      </div>
+    </div>
+    <br><br><br><br><br>
+    <!-- NEW4 -->
+    <h2 style="text-align:center">2022 Best Hybrid cars</h2>
+
+    <div class="row ROW">
+      <div class="column">
+        <img src="merchyb.jpg" style="width:100%"  class="hover-shadow cursor" title="Mercedes C300 e">
+      </div>
+      <div class="column">
+        <img src="bmwhyb.jpg" style="width:100%"  class="hover-shadow cursor" title="BMW X5 45e">
+      </div>
+      <div class="column">
+        <img src="toyota.jpg" style="width:100%"  class="hover-shadow cursor" title="Toyota Yaris">
+      </div>
+      <div class="column">
+        <img src="reno.jpg" style="width:100%"  class="hover-shadow cursor" title="Renault Captur"> 
+      </div>
+    </div>
+
+<!--     
+    <div id="myModal" class="modal">
+      <span class="close cursor" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+    
+        <div class="mySlides">
+          <div class="numbertext">Nissan</div>
+          <img src="nissanz.jpg" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+          <div class="numbertext">Chevrolet</div>
+          <img src="chevo.jpg" style="width:100%">
+        </div>
+    
+        <div class="mySlides">
+          <div class="numbertext">Nissan</div>
+          <img src="altima.jpg" style="width:100%">
+        </div>
+        
+        <div class="mySlides">
+          <div class="numbertext">Ford</div>
+          <img src="bestyear.jpg" style="width:100%">
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+     -->
+<!--     
+        <div class="column">
+          <img class="demo cursor" src="nissanz.jpg" style="width:100%" onclick="currentSlide(1)" alt="2023 Nissan Z">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="chevo.jpg" style="width:100%" onclick="currentSlide(2)" alt="2022 Chevrolet Bolt EUV">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="altima.jpg" style="width:100%" onclick="currentSlide(3)" alt="2022 Nissan Altima">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="bestyear.jpg" style="width:100%" onclick="currentSlide(4)" alt="2022 Ford F-150 Lighting">
+        </div>
+      </div>
+    </div> -->
+    <br><br><br><br><br>
+
+    <!-- Footer -->
+    <table style="margin: 20px;" class="Table">
+      <dl>
+        <dt style="margin-left: 10px;font-size: 20px;">Find out more</dt>
+        <dd><a href="https://www.cars.com/" target="_blank">Trending</a></dd>
+        <dd><a href="https://globehour.com/what-is-the-fastest-cars-in-the-world-2022/" target="_blank">Fastest cars</a></dd>
+        <dd><a href="https://www.autoexpress.co.uk/hybrid-cars/86211/top-10-best-hybrid-cars-buy-2022" target="_blank">Hybrid cars</a></dd>
+      </dl>
+    </table>
+    <hr>
+    <div style="font-size: 20px;margin-left:10px ;margin-bottom: 5px;">Copy right &copy;. All rights reserved.</div>
+
+
+  <script>
+	function myFunction() {
+	  var x = document.getElementById("myTopnav");
+	  if (x.className === "topnav") {
+		x.className += " responsive";
+	  } else {
+		x.className = "topnav";
+	  }
+	}
+  //
+  function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+
+	</script>
+  </body>
+  </html>
+  
